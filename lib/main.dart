@@ -1,12 +1,38 @@
 import 'package:borla_client/pages/homepage.dart';
 import 'package:borla_client/pages/signin.dart';
 import 'package:borla_client/pages/signup.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'Assistant/helper.dart';
+import 'Model/Users.dart';
+import 'appData.dart';
+import 'firebase_options.dart';
+
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<AppData>(
+      create: (context) => AppData(),
+    ),
+    ChangeNotifierProvider<Users>(
+      create: (context) => Users(),
+    ),
+
+// ),
+    ChangeNotifierProvider<helper>(
+      create: (context) => helper(),
+    )
+
+
+  ],child: MyApp()));
 }
 
 final FirebaseAuth auth = FirebaseAuth.instance;
