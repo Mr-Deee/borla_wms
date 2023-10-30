@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/cupertino.dart';
 
-class client extends ChangeNotifier
+class WMS extends ChangeNotifier
 {
   String?firstname;
   String?lastname;
@@ -15,31 +15,31 @@ class client extends ChangeNotifier
   String?plate_number;
   String?profilepicture;
 
-  client({this.firstname, this.lastname,this.phone, this.email, this.id, this.automobile_color, this.automobile_model, this.plate_number, this.profilepicture,});
+  WMS({this.firstname, this.lastname,this.phone, this.email, this.id, this.automobile_color, this.automobile_model, this.plate_number, this.profilepicture,});
 
-  static client fromMap(Map<String, dynamic> data)
+  static WMS fromMap(Map<String, dynamic> data)
 
   {
     //var data= dataSnapshot.value;
-    return client(
+    return WMS(
       id: data['uid'],
-      phone: data["phoneNumber"],
+      phone: data["phone"],
       email: data["email"],
-      firstname: data["FirstName"],
-      lastname: data["LastName"],
-      profilepicture: data["riderImageUrl"],
-    automobile_color: data["car_details"]["automobile_color"],
-    automobile_model: data["car_details"]["motorBrand"],
-     plate_number:data["car_details"]["licensePlateNumber"],
+      firstname: data["Username"],
+      // lastname: data["LastName"],
+    //   profilepicture: data["riderImageUrl"],
+    // automobile_color: data["car_details"]["automobile_color"],
+    // automobile_model: data["car_details"]["motorBrand"],
+    //  plate_number:data["car_details"]["licensePlateNumber"],
     );
   }
 
-  client? _riderInfo;
+    WMS? _riderInfo;
 
-  client? get riderInfo => _riderInfo;
+  WMS? get riderInfo => _riderInfo;
 
-  void setRider(client clien_t) {
-    _riderInfo = clien_t;
+  void setRider(WMS wms) {
+    _riderInfo = wms;
     notifyListeners();
   }
 }

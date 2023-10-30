@@ -26,7 +26,7 @@ class AssistantMethod{
     String? userId = firebaseUser!.uid; // ASSIGN UID FROM FIREBASE TO LOCAL STRING
     print('assistant methods step 5:: assign firebase uid to string');
     print(userId);
-    DatabaseReference reference = FirebaseDatabase.instance.ref().child("Riders").child(userId);
+    DatabaseReference reference = FirebaseDatabase.instance.ref().child("WMS").child(userId);
     print(
         'assistant methods step 6:: call users document from firebase database using userId');
     reference.once().then(( event) async {
@@ -38,7 +38,7 @@ class AssistantMethod{
         DatabaseEvent event = await reference.once();
         print(event);
 
-        context.read<client>().setRider(client.fromMap(Map<String, dynamic>.from(event.snapshot.value as dynamic)));
+        context.read<WMS>().setRider(WMS.fromMap(Map<String, dynamic>.from(event.snapshot.value as dynamic)));
         print('assistant methods step 8:: assign users data to usersCurrentInfo object');
 
 

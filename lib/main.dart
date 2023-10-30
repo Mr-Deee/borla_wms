@@ -1,3 +1,4 @@
+import 'package:borla_client/Model/Client.dart';
 import 'package:borla_client/pages/homepage.dart';
 import 'package:borla_client/pages/signin.dart';
 import 'package:borla_client/pages/signup.dart';
@@ -9,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import 'Assistant/helper.dart';
 import 'Model/Users.dart';
+import 'Model/otherUserModel.dart';
 import 'appData.dart';
 import 'firebase_options.dart';
 
@@ -24,14 +26,18 @@ void main() async {
     ),
     ChangeNotifierProvider<Users>(
       create: (context) => Users(),
+    ),   ChangeNotifierProvider<WMS>(
+      create: (context) => WMS(),
     ),
 
 // ),
     ChangeNotifierProvider<helper>(
       create: (context) => helper(),
-    )
+    ),
 
-
+    ChangeNotifierProvider<otherUsermodel>(
+      create: (context) => otherUsermodel(),
+    ),
   ],child: MyApp()));
 }
 
@@ -42,7 +48,7 @@ DatabaseReference  clientRequestRef = FirebaseDatabase.instance.ref().child("Bin
 DatabaseReference WastemanagementRef= FirebaseDatabase.instance.ref().child("WMS").child(uid!).child("new WMS");
 DatabaseReference clients = FirebaseDatabase.instance.ref().child("Clients");
 DatabaseReference WMSDB = FirebaseDatabase.instance.ref().child("WMS");
-DatabaseReference WMSAvailable = FirebaseDatabase.instance.ref().child("availableWMS");
+DatabaseReference WMSAvailable = FirebaseDatabase.instance.ref().child("availableWMS").child(currentfirebaseUser!.uid);
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -53,7 +59,7 @@ class MyApp extends StatelessWidget {
       title: 'BorlApp_wms',
       theme: ThemeData(
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
         initialRoute:

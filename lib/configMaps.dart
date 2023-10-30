@@ -14,7 +14,7 @@ String mapKey ="AIzaSyC6UDM8O3wlMa5SNLHfcM8MGEFJ3ejc55U";
 
 
 // Arti_san? artisanInformation;
-client? riderinformation;
+WMS? riderinformation;
 //User firebaseUser;
 User? firebaseUser;
 

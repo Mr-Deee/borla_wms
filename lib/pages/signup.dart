@@ -368,7 +368,7 @@ class _signupState extends State<signup> {
         // "Dob":birthDate,
         // "Gender":Gender,
       };
-      clients.child(firebaseUser!.uid).set(userDataMap);
+      WMSDB.child(firebaseUser!.uid).set(userDataMap);
       // Admin.child(firebaseUser!.uid).set(userDataMap);
 
       currentfirebaseUser = firebaseUser;

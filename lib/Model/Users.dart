@@ -28,7 +28,7 @@ class Users extends ChangeNotifier {
     return Users(
       id:map['id'],
       email : map["email"],
-      firstname : map["firstName"],
+      firstname : map["Userna"],
       lastname: map["lastName"],
       profilepicture: map["Profilepicture"].toString(),
       phone : map["phone"],
