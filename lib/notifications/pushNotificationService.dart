@@ -50,7 +50,7 @@ class PushNotificationService {
     String? token = await messaging.getToken();
     print("This is token :: ");
     print(token);
-    WastemanagementRef.child(currentfirebaseUser!.uid).child("token").set(token);
+    WMSDB.child(currentfirebaseUser!.uid).child("token").set(token);
     print("JUST GOT IT");
     messaging.subscribeToTopic("alldrivers");
     messaging.subscribeToTopic("allusers");

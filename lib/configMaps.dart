@@ -31,4 +31,4 @@ double starCounter=0.0;
 
 StreamSubscription<Position>?  homeTabPageStreamSubscription;
 String rideType="";
-String serverToken = "key=AAAAH236CYE:APA91bHTCNVNDzYg7z3gZ57sA7FBSt4fWMm0zp3w_3pc6PjUR4SbG4sJPRFCz07wBTY3fA1zNx3iDorEU-Ia1QRP5jmcYTbsAEitjbZbuw2jOLx7SUBioiBnIIFAuV7BqHWjVk89UhGH";
+String serverToken = "key=AAAAVtKD6xg:APA91bFcNoAC4CKFdKqZEU8eNWWvcl_mHtWI12bMDChOUvq7lFTxs5QzDiiInaRwMCgN9YuuQPEgJ64Po4w9GujcG2maNOe18cvFUVavbq31giVxmu0wRGY84iDRd884azPUKkruthhl";

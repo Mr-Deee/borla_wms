@@ -103,7 +103,7 @@ class _homepageState extends State<homepage> {
 
   getartisanType() {
     WastemanagementRef.child(currentfirebaseUser!.uid)
-        .child("service_type")
+        .child("WMS_type")
         .once()
         .then((value) {
       if (value != null) {
@@ -115,12 +115,12 @@ class _homepageState extends State<homepage> {
     });
   }
 
-  getCurrentArtisanInfo() async {
+  getCurrentWMSInfo() async {
     currentfirebaseUser = await FirebaseAuth.instance.currentUser;
     WMSDB.child(currentfirebaseUser!.uid).once().then((event) {
       print("value");
       if (event.snapshot.value != null) {
-        artisanInformation = Arti_san.fromSnapshot(event.snapshot);
+        riderinformation = WMS.fromMap(event.snapshot as Map<String, dynamic>);
       }
 
       PushNotificationService pushNotificationService =
@@ -161,7 +161,7 @@ class _homepageState extends State<homepage> {
     requestLocationPermission();
     AssistantMethod.getCurrentrequestinfo(context);
     AssistantMethod.obtainTripRequestsHistoryData(context);
-    getCurrentArtisanInfo();
+    getCurrentWMSInfo();
   }
 
   final List<String> imageList = [
@@ -676,44 +676,6 @@ class _homepageState extends State<homepage> {
 
 
         ],
-        // backgroundColor: Colors.white,
-        // drawer: CustomDrawer(),
-        // appBar: PreferredSize(
-        //   preferredSize: const Size.fromHeight(40.0), //appbar size
-        //   child: AppBar(
-        //     elevation: 0,
-        //     shadowColor: Colors.transparent,
-        //     backgroundColor: isDarkMode ? const Color(0xff06090d) : Colors.black,
-        //     leading: Builder(
-        //         builder: (context) => IconButton(
-        //               icon: new Icon(
-        //                 Icons.drag_handle_outlined,
-        //                 color: isDarkMode
-        //                     ? Colors.white
-        //                     : Colors.black, //icon bg color
-        //                 size: size.height * 0.025,
-        //               ),
-        //               onPressed: () => Scaffold.of(context).openDrawer(),
-        //             )),
-        //     automaticallyImplyLeading: false,
-        //     titleSpacing: 0,
-        //     leadingWidth: size.width * 0.15,
-        //     title: Text("WASTE MANAGEMENT SERVICE",
-        //         style: GoogleFonts.poppins(
-        //           color: Colors.black,
-        //           fontSize: size.width * 0.06,
-        //           fontWeight: FontWeight.bold,
-        //         )),
-        //     centerTitle: true,
-        //     actions: <Widget>[
-        //       Padding(
-        //         padding: EdgeInsets.only(
-        //           right: size.width * 0.05,
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
 
 
       ),
@@ -742,22 +704,12 @@ class _homepageState extends State<homepage> {
     Map<String, dynamic> artisanMap = {
       "Profilepicture":
           Provider.of<Users>(context, listen: false).userInfo?.profilepicture??"",
-      // "client_name":
-      //     Provider.of<Users>(context, listen: false).userInfo!.firstname! +
-      //         Provider.of<Users>(context, listen: false).userInfo!.lastname!,
-      "Username":
-          Provider.of<WMS>(context, listen: false).riderInfo?.firstname??"",
-      // "LastName":
-      //     Provider.of<Users>(context, listen: false).userInfo!.lastname!,
-      // "service_type" :Provider.of<otherUsermodel>(context,listen:false).otherinfo!.Service!,
-      "client_phone":
-          Provider.of<WMS>(context, listen: false).riderInfo?.phone!,
+      "Username": Provider.of<WMS>(context, listen: false).riderInfo?.firstname??"",
+      "WMS_type":Provider.of<otherUsermodel>(context,listen:false).otherinfo?.Service??"",
+      "client_phone": Provider.of<WMS>(context, listen: false).riderInfo?.phone!,
       // "Experience" :Provider.of<otherUsermodel>(context,listen: false).otherinfo!.Experience!,
-      // "Institution": Provider.of<otherUsermodel>(context,listen: false).otherinfo!.Institution!,
       "email": Provider.of<WMS>(context, listen: false).riderInfo?.email!,
-      // "Education":  Provider.of<otherUsermodel>(context,listen:false).otherinfo!.Education!,
-      // "Description": Provider.of<otherUsermodel>(context,listen:false).otherinfo!.Description!,
-      // "Location":Provider.of<otherUsermodel>(context,listen: false).otherinfo!.location??"",
+      "email": Provider.of<WMS>(context, listen: false).riderInfo?.email!,
     };
     WastemanagementRef.set("searching");
     Geofire.initialize("availableWMS");
