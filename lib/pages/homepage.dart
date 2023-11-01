@@ -123,8 +123,7 @@ class _homepageState extends State<homepage> {
         riderinformation = WMS.fromMap(event.snapshot as Map<String, dynamic>);
       }
 
-      PushNotificationService pushNotificationService =
-          PushNotificationService();
+      PushNotificationService pushNotificationService = PushNotificationService();
       pushNotificationService.initialize(context);
       pushNotificationService.getToken();
     });
