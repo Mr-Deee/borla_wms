@@ -301,25 +301,25 @@ class _signinState extends State<signin> {
             SizedBox(
               height: 30,
             ),
-
-            ElevatedButton(
-              onPressed: () {
-                _handleGoogleSignIn(context);
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      30.0), // Adjust the value to change the roundness
-                ),
-              ),
-              child: Container(
-                width: 20.0, // Adjust the width as needed
-                height: 48.0, // Adjust the height as needed
-                child: Image.asset(
-                  'assets/images/logo.png',
-                ),
-              ),
-            ),
+            //
+            // ElevatedButton(
+            //   onPressed: () {
+            //     _handleGoogleSignIn(context);
+            //   },
+            //   style: ElevatedButton.styleFrom(
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(
+            //           30.0), // Adjust the value to change the roundness
+            //     ),
+            //   ),
+            //   child: Container(
+            //     width: 20.0, // Adjust the width as needed
+            //     height: 48.0, // Adjust the height as needed
+            //     child: Image.asset(
+            //       'assets/images/logo.png',
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -404,7 +404,7 @@ class _signinState extends State<signin> {
     Future signInWithEmailAndPassword(String email, String password) async {
       try {
         UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
-            email: email, password: password);
+            email: emailcontroller.text.trim(), password: emailcontroller.text.trim());
         User? user = result.user;
         return _firebaseAuth;
       } catch (error) {

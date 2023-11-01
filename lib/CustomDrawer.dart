@@ -1,3 +1,4 @@
+import 'package:borla_client/pages/Requests.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -131,8 +132,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
             leading: Icon(Icons.request_page_rounded,color: Colors.green,),
             title: Text('Request',style: TextStyle(color: Colors.black),),
             onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                  builder: (context) => Requests(),
+              ),);
               // Handle Settings menu item click
-              Navigator.pop(context);
+              // Navigator.pop(context);
             },
           ),
           ListTile(
