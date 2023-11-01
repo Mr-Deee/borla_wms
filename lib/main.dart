@@ -48,6 +48,7 @@ DatabaseReference  clientRequestRef = FirebaseDatabase.instance.ref().child("Bin
 DatabaseReference WastemanagementRef= FirebaseDatabase.instance.ref().child("WMS").child(uid!).child("new WMS");
 DatabaseReference clients = FirebaseDatabase.instance.ref().child("Clients");
 DatabaseReference WMSDB = FirebaseDatabase.instance.ref().child("WMS");
+DatabaseReference WMSDBtoken = FirebaseDatabase.instance.ref().child(uid!);
 DatabaseReference WMSAvailable = FirebaseDatabase.instance.ref().child("availableWMS").child(currentfirebaseUser!.uid);
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

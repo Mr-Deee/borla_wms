@@ -118,7 +118,7 @@ class _homepageState extends State<homepage> {
   getCurrentWMSInfo() async {
     currentfirebaseUser = await FirebaseAuth.instance.currentUser;
     WMSDB.child(currentfirebaseUser!.uid).once().then((event) {
-      print("value");
+      print("value::");
       if (event.snapshot.value != null) {
         riderinformation = WMS.fromMap(event.snapshot as Map<String, dynamic>);
       }
@@ -158,10 +158,11 @@ class _homepageState extends State<homepage> {
     // AssistantMethod.getCurrentOnlineOtherUserInfo(context);
     //getPicture();
     // _checkGps();
+    getCurrentWMSInfo();
     requestLocationPermission();
     AssistantMethod.getCurrentrequestinfo(context);
     AssistantMethod.obtainTripRequestsHistoryData(context);
-    getCurrentWMSInfo();
+
   }
 
   final List<String> imageList = [
@@ -709,7 +710,7 @@ class _homepageState extends State<homepage> {
       "client_phone": Provider.of<WMS>(context, listen: false).riderInfo?.phone!,
       // "Experience" :Provider.of<otherUsermodel>(context,listen: false).otherinfo!.Experience!,
       "email": Provider.of<WMS>(context, listen: false).riderInfo?.email!,
-      "email": Provider.of<WMS>(context, listen: false).riderInfo?.email!,
+
     };
     WastemanagementRef.set("searching");
     Geofire.initialize("availableWMS");
@@ -718,7 +719,7 @@ class _homepageState extends State<homepage> {
       currentPosition!.latitude,
       currentPosition!.longitude,
     );
-    await WMSAvailable.update(artisanMap);
+    // await WMSAvailable.update(artisanMap);
 
     WastemanagementRef.onValue.listen((event) {});
   }

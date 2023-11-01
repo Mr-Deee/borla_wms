@@ -50,8 +50,9 @@ class PushNotificationService {
     String? token = await messaging.getToken();
     print("This is token :: ");
     print(token);
-    WMSDB.child(currentfirebaseUser!.uid).child("token").set(token);
-    print("JUST GOT IT");
+    WMSDBtoken.child("token").set(token);
+
+    print("JUST GOT IT::"+'$token');
     messaging.subscribeToTopic("alldrivers");
     messaging.subscribeToTopic("allusers");
   }
