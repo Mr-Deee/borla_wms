@@ -38,9 +38,9 @@ class NotificationDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 10.0),
-            Image.asset("assets/images/tools.png", width: 150.0,),
+            // Image.asset("assets/images/tools.png", width: 150.0,),
             SizedBox(height: 0.0,),
-            Text("New Artisan Request", style: TextStyle(fontFamily: "Brand Bold", fontSize: 20.0,color: Colors.black),),
+            Text("New WMS Request", style: TextStyle(fontFamily: "Brand Bold", fontSize: 20.0,color: Colors.black),),
             SizedBox(height: 20.0),
             Padding(
               padding: EdgeInsets.all(18.0),
@@ -51,7 +51,7 @@ class NotificationDialog extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       //Text("Pick Up", style: TextStyle(fontSize: 20.0,color: Colors.black),),
-                   Image.asset("assets/images/tools.png", height: 16.0, width: 16.0,),
+                   // Image.asset("assets/images/tools.png", height: 16.0, width: 16.0,),
                       SizedBox(width: 20.0,),
                      Expanded(child: Container(
                          child:  Container(child: Text(clientDetails!.client_Address??"", style: TextStyle(fontSize: 18.0,color: Colors.black), )),
@@ -86,51 +86,54 @@ class NotificationDialog extends StatelessWidget {
 
             Padding(
               padding: EdgeInsets.all(20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
 
-                  ElevatedButton(
-                    // shape: RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(18.0),
-                    //     side: BorderSide(color: Colors.red)),
-                    // color: Colors.white,
-                    // textColor: Colors.red,
-                    // padding: EdgeInsets.all(8.0),
-                    onPressed: ()
-                    {
-                      //assetsAudioPlayer.stop();
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Cancel".toUpperCase(),
-                      style: TextStyle(
-                        fontSize: 14.0,
+                    ElevatedButton(
+                      // shape: RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.circular(18.0),
+                      //     side: BorderSide(color: Colors.red)),
+                      // color: Colors.white,
+                      // textColor: Colors.red,
+                      // padding: EdgeInsets.all(8.0),
+                      onPressed: ()
+                      {
+                        //assetsAudioPlayer.stop();
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Cancel".toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 14.0,
+                        ),
                       ),
                     ),
-                  ),
 
-                  SizedBox(width: 25.0),
+                    SizedBox(width: 25.0),
 
-                  ElevatedButton(
-                    // shape: RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(18.0),
-                    //     side: BorderSide(color: Colors.green)),
-                    onPressed: ()
-                    {
-                      //assetsAudioPlayer.stop();
-                     checkAvailabilityOfRide(context);
-                   //  return context;
+                    ElevatedButton(
+                      // shape: RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.circular(18.0),
+                      //     side: BorderSide(color: Colors.green)),
+                      onPressed: ()
+                      {
+                        //assetsAudioPlayer.stop();
+                       checkAvailabilityOfRide(context);
+                     //  return context;
 
 
-                    },
-                    //color: Colors.green,
-                   // textColor: Colors.white,
-                    child: Text("Accept".toUpperCase(),
-                        style: TextStyle(fontSize: 14)),
-                  ),
+                      },
+                      //color: Colors.green,
+                     // textColor: Colors.white,
+                      child: Text("Accept".toUpperCase(),
+                          style: TextStyle(fontSize: 14)),
+                    ),
 
-                ],
+                  ],
+                ),
               ),
             ),
 

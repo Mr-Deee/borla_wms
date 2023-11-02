@@ -22,6 +22,8 @@ class PushNotificationService {
 
 
 
+
+
     FirebaseMessaging.onMessage.listen((RemoteMessage message)   {
       print('Got a message whilst in the foreground!');
       retrieveRideRequestInfo(getRideRequestId(message.data), context);
@@ -60,14 +62,14 @@ class PushNotificationService {
   String getRideRequestId(Map<String, dynamic> message) {
     String rideRequestId = "";
     if (Platform.isAndroid) {
-      print("This is Ride Request Id:: ");
-      rideRequestId = message['ride_request_id'];
+      print("This is Ride Request Id::");
+      rideRequestId = message['WMS_request_id'];
       print("ride_request_id");
       print(rideRequestId);
     }
     else {
       print("This is Ride Request Id:: ");
-      rideRequestId = message['ride_request_id'];
+      rideRequestId = message['WMS_request_id'];
       print(rideRequestId);
     }
 
@@ -76,11 +78,12 @@ class PushNotificationService {
 
   void retrieveRideRequestInfo(String artisanRequestId, BuildContext context) {
     clientRequestRef.child(artisanRequestId).once().then((event) {
-      final map = event.snapshot.value as Map<dynamic,dynamic>;
+
       // var dataSnapshot = value.snapshot;
       // final map = dataSnapshot.value as Map<dynamic, dynamic>;
       //var map = Map<String, dynamic>.from(event.snapshot.value as Map);
       if (event.snapshot.value != null) {
+        final map = event.snapshot.value as Map<dynamic,dynamic>;
       //  assetsAudioPlayer.open(Audio("sounds/alert.mp3"));
         //assetsAudioPlayer.play();
 
@@ -106,13 +109,13 @@ class PushNotificationService {
         clientDetails.artisan_request_id = artisanRequestId;
         clientDetails.client_Address = clientAddress;
         clientDetails.finalClient_address= finalClientaddress;
-        clientDetails.pickup = LatLng(pickUpLocationLat, pickUpLocationLng);
-        clientDetails.dropoff = LatLng(dropOffLocationLat, dropOffLocationLng);
+        // clientDetails.pickup = LatLng(pickUpLocationLat, pickUpLocationLng);
+        // clientDetails.dropoff = LatLng(dropOffLocationLat, dropOffLocationLng);
         clientDetails.payment_method = paymentMethod;
         clientDetails.client_name = client_name;
         clientDetails.client_phone = client_phone;
 
-        print("Information :: ");
+        print("Information saaa:: ");
         print(clientDetails.client_Address);
       //  print(clientDetails.artisan_address);
 

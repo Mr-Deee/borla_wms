@@ -119,8 +119,10 @@ class _homepageState extends State<homepage> {
     currentfirebaseUser = await FirebaseAuth.instance.currentUser;
     WMSDB.child(currentfirebaseUser!.uid).once().then((event) {
       print("value::");
-      if (event.snapshot.value != null) {
-        riderinformation = WMS.fromMap(event.snapshot as Map<String, dynamic>);
+      if (event.snapshot.value != null && event.snapshot.value is Map<String, dynamic>) {
+        riderinformation = WMS.fromMap(event.snapshot.value as Map<String, dynamic>);
+        print("value::+$riderinformation");
+        // riderinformation = WMS.fromMap(event.snapshot as Map<String, dynamic>);
       }
 
       PushNotificationService pushNotificationService = PushNotificationService();
