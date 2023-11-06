@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:borla_client/pages/About.dart';
 
 import 'Assistant/assistantmethods.dart';
 import 'Model/Client.dart';
@@ -23,13 +24,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
     super.initState();
     AssistantMethod.getCurrentOnlineUserInfo(context);
   }
+
   @override
   Widget build(BuildContext context) {
-
-
-    var username = Provider.of<WMS>(context,listen: false).riderInfo?.firstname??"";
-    var lclientname = Provider.of<WMS>(context,listen: false).riderInfo?.lastname??"";
-    var phoneNumber = Provider.of<WMS>(context,listen: false).riderInfo?.phone??"";
+    var username =
+        Provider.of<WMS>(context, listen: false).riderInfo?.firstname ?? "";
+    var lclientname =
+        Provider.of<WMS>(context, listen: false).riderInfo?.lastname ?? "";
+    var phoneNumber =
+        Provider.of<WMS>(context, listen: false).riderInfo?.phone ?? "";
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -39,7 +42,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
               color: Colors.white,
             ),
             child: Column(
-
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,15 +49,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Text(
                       username,
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 34,
-                        fontWeight: FontWeight.bold
-                      ),
+                          color: Colors.black,
+                          fontSize: 34,
+                          fontWeight: FontWeight.bold),
                     ),
                     IconButton(
                       onPressed: () {
-
-
                         showDialog<void>(
                           context: context,
                           barrierDismissible: false, // user must tap button!
@@ -66,7 +65,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               content: SingleChildScrollView(
                                 child: Column(
                                   children: <Widget>[
-                                    Text('Are you certain you want to Sign Out?'),
+                                    Text(
+                                        'Are you certain you want to Sign Out?'),
                                   ],
                                 ),
                               ),
@@ -112,8 +112,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 14,
-                          fontWeight: FontWeight.bold
-                      ),
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -121,16 +120,28 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home,color: Colors.green,),
-            title: Text('Home',style: TextStyle(color: Colors.black),),
+            leading: Icon(
+              Icons.home,
+              color: Colors.green,
+            ),
+            title: Text(
+              'Home',
+              style: TextStyle(color: Colors.black),
+            ),
             onTap: () {
               // Handle Home menu item click
               Navigator.pop(context);
             },
           ),
           ListTile(
-            leading: Icon(Icons.request_page_rounded,color: Colors.green,),
-            title: Text('Request',style: TextStyle(color: Colors.black),),
+            leading: Icon(
+              Icons.request_page_rounded,
+              color: Colors.green,
+            ),
+            title: Text(
+              'Request',
+              style: TextStyle(color: Colors.black),
+            ),
             onTap: () {
               Navigator.push(
                   context,
@@ -142,7 +153,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.person_3_rounded,color: Colors.green,),
+            leading: Icon(
+              Icons.person_3_rounded,
+              color: Colors.green,
+            ),
             title: Text('Profile'),
             onTap: () {
               // Handle About menu item click
@@ -150,11 +164,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.info,color: Colors.green),
+            leading: Icon(Icons.info, color: Colors.green),
             title: Text('About'),
             onTap: () {
-              // Handle About menu item click
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return AboutPage();
+                }),
+                // Handle About menu item click
+              ); // Navigator.pop(context);
             },
           ),
         ],

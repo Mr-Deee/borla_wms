@@ -15,7 +15,6 @@ import 'appData.dart';
 import 'firebase_options.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -26,7 +25,8 @@ void main() async {
     ),
     ChangeNotifierProvider<Users>(
       create: (context) => Users(),
-    ),   ChangeNotifierProvider<WMS>(
+    ),
+    ChangeNotifierProvider<WMS>(
       create: (context) => WMS(),
     ),
 
@@ -38,18 +38,25 @@ void main() async {
     ChangeNotifierProvider<otherUsermodel>(
       create: (context) => otherUsermodel(),
     ),
-  ],child: MyApp()));
+  ], child: MyApp()));
 }
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 final User? user = auth.currentUser;
 final uid = user?.uid;
-DatabaseReference  clientRequestRef = FirebaseDatabase.instance.ref().child("ClientRequest");
-DatabaseReference WastemanagementRef= FirebaseDatabase.instance.ref().child("WMS").child(uid!).child("new WMS");
+DatabaseReference clientRequestRef =
+    FirebaseDatabase.instance.ref().child("ClientRequest");
+DatabaseReference WastemanagementRef =
+    FirebaseDatabase.instance.ref().child("WMS").child(uid!).child("new WMS");
 DatabaseReference clients = FirebaseDatabase.instance.ref().child("Clients");
 DatabaseReference WMSDB = FirebaseDatabase.instance.ref().child("WMS");
-DatabaseReference WMSDBtoken = FirebaseDatabase.instance.ref().child("WMS").child(uid!);
-DatabaseReference WMSAvailable = FirebaseDatabase.instance.ref().child("availableWMS").child(currentfirebaseUser!.uid);
+DatabaseReference WMSDBtoken =
+    FirebaseDatabase.instance.ref().child("WMS").child(uid!);
+DatabaseReference WMSAvailable = FirebaseDatabase.instance
+    .ref()
+    .child("availableWMS")
+    .child(currentfirebaseUser!.uid);
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -57,23 +64,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BorlApp_wms',
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-        useMaterial3: true,
-      ),
+        title: 'BorlApp_wms',
+        theme: ThemeData(
+          // ban
+          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+          useMaterial3: true,
+        ),
         initialRoute:
-        FirebaseAuth.instance.currentUser == null ? '/SignIn' : '/Homepage',
+            FirebaseAuth.instance.currentUser == null ? '/SignIn' : '/Homepage',
         routes: {
           "/SignUP": (context) => signup(),
           // "/OnBoarding": (context) => ,
-          "/SignIn": (context) =>signin(),
+          "/SignIn": (context) => signin(),
           "/Homepage": (context) => homepage(),
           //    "/addproduct":(context)=>addproduct()
-        }
-    );
+        });
   }
 }
-
-
