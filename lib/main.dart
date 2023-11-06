@@ -1,4 +1,5 @@
 import 'package:borla_client/Model/Client.dart';
+import 'package:borla_client/pages/Aboutpage.dart';
 import 'package:borla_client/pages/homepage.dart';
 import 'package:borla_client/pages/signin.dart';
 import 'package:borla_client/pages/signup.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
         FirebaseAuth.instance.currentUser == null ? '/SignIn' : '/Homepage',
         routes: {
           "/SignUP": (context) => signup(),
+          "/About": (context) => AboutPage(),
           // "/OnBoarding": (context) => ,
           "/SignIn": (context) =>signin(),
           "/Homepage": (context) => homepage(),

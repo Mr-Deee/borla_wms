@@ -1,3 +1,4 @@
+import 'package:borla_client/pages/Aboutpage.dart';
 import 'package:borla_client/pages/Requests.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -135,7 +136,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                  builder: (context) => Requests(),
+                  builder: (context) => Requestpage(),
               ),);
               // Handle Settings menu item click
               // Navigator.pop(context);
@@ -153,8 +154,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
             leading: Icon(Icons.info,color: Colors.green),
             title: Text('About'),
             onTap: () {
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AboutPage(),
+                ),);
               // Handle About menu item click
-              Navigator.pop(context);
             },
           ),
         ],
