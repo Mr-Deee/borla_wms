@@ -1,4 +1,5 @@
 import 'package:borla_client/Model/Client.dart';
+import 'package:borla_client/Model/appstate.dart';
 import 'package:borla_client/pages/Aboutpage.dart';
 import 'package:borla_client/pages/homepage.dart';
 import 'package:borla_client/pages/signin.dart';
@@ -38,6 +39,10 @@ void main() async {
 
     ChangeNotifierProvider<otherUsermodel>(
       create: (context) => otherUsermodel(),
+    ),
+
+    ChangeNotifierProvider<AppState>(
+      create: (context) => AppState(),
     ),
   ],child: MyApp()));
 }

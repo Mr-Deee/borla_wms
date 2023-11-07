@@ -16,6 +16,7 @@ import 'package:geolocator/geolocator.dart';
 import '../CustomDrawer.dart';
 import '../Model/Client.dart';
 import '../Model/Users.dart';
+import '../Model/appstate.dart';
 import '../Model/otherUserModel.dart';
 import '../configMaps.dart';
 import '../main.dart';
@@ -273,24 +274,28 @@ class _homepageState extends State<homepage> {
 
 
                            Switch(
-                                    value: isSwitched,
+                             value: context.read<AppState>().isSwitched,
+
                                     onChanged: (value) async {
                                       currentfirebaseUser =
                                       await FirebaseAuth.instance.currentUser;
 
-                                      if (isSwitched == false) {
+                                      final appState = context.read<AppState>();
+
+                                      if (value == false) {
                                         makeArtisanOnlineNow();
                                         getLocationLiveUpdates();
 
                                         setState(() {
-                                          isSwitched = true;
+                                          // isSwitched = true;
+                                          appState.toggleSwitch();
                                         });
                                         displayToast(" Online .", context);
                                       } else {
                                         makeArtisanOfflineNow();
 
                                         setState(() {
-                                          isSwitched = false;
+                                          appState.toggleSwitch();
 
                                           ArtisanStatusColor = Colors.white70;
                                           ArtisanStatusText = "Offline ";
