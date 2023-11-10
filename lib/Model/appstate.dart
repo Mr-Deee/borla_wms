@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppState with ChangeNotifier {
-  bool isSwitched = false;
+  bool _isSwitched = false;
+
+  bool get isSwitched => _isSwitched;
 
   void toggleSwitch() {
-    isSwitched = !isSwitched;
+    _isSwitched = !_isSwitched;
     notifyListeners();
   }
 }

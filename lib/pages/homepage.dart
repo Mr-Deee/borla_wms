@@ -270,47 +270,40 @@ class _homepageState extends State<homepage> {
                               //         fontSize: 24, fontWeight: FontWeight.bold),
                               //   ),
                               // ),
+                      Switch(
+                        value: context.read<AppState>().isSwitched,
+                        onChanged: (value) async {
+                          final appState = context.read<AppState>();
+
+                          try {
+                            if (value) {
+                              // Switching to online
+                               makeArtisanOnlineNow();
+                               getLocationLiveUpdates();
+                              displayToast("Online.", context);
+                            } else {
+                              // Switching to offline
+                              makeArtisanOfflineNow();
+                              displayToast("Offline.", context);
+                            }
+
+                             appState.toggleSwitch(); // Assume toggleSwitch is an asynchronous operation
+
+                            // Trigger a rebuild of the widget tree to reflect the updated switch state
+                            setState(() {});
+
+                          } catch (error) {
+                            print("Error: $error");
+                            displayToast("Error occurred.", context);
+                          }
+                        },
+                        activeTrackColor: Colors.black38,
+                        activeColor: Colors.black,
+                      ),
 
 
 
-                           Switch(
-                             value: context.read<AppState>().isSwitched,
-
-                                    onChanged: (value) async {
-                                      currentfirebaseUser =
-                                      await FirebaseAuth.instance.currentUser;
-
-                                      final appState = context.read<AppState>();
-
-                                      if (value == false) {
-                                        makeArtisanOnlineNow();
-                                        getLocationLiveUpdates();
-
-                                        setState(() {
-                                          // isSwitched = true;
-                                          appState.toggleSwitch();
-                                        });
-                                        displayToast(" Online .", context);
-                                      } else {
-                                        makeArtisanOfflineNow();
-
-                                        setState(() {
-                                          appState.toggleSwitch();
-
-                                          ArtisanStatusColor = Colors.white70;
-                                          ArtisanStatusText = "Offline ";
-                                          isArtisanAvailable = false;
-                                        });
-
-                                        displayToast("offline .", context);
-                                      }
-                                      ;
-                                    },
-                                    activeTrackColor: Colors.black38,
-                                    activeColor: Colors.black,
-                                  ),
-
-                          //   ],
+                //   ],
                           // ),
 
                           // Positioned(

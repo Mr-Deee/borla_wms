@@ -435,29 +435,29 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
     clientRequestRef.child(rideRequestId!).child("status").set("accepted");
     clientRequestRef
         .child(rideRequestId)
-        .child("artisan_name")
+        .child("WMS_name")
         .set(artisanInformation?.name);
     clientRequestRef
         .child(rideRequestId)
-        .child("artisan_phone")
+        .child("WMS_phone")
         .set(artisanInformation?.phone);
     clientRequestRef
         .child(rideRequestId)
         .child("artisan_id")
         .set(artisanInformation?.id);
-    clientRequestRef.child(rideRequestId).child("artisan_details").set(
-        '${artisanInformation?.education} ● ${artisanInformation?.servicetype} ● ${artisanInformation?.phone}');
+    // clientRequestRef.child(rideRequestId).child("artisan_details").set(
+    //     '${artisanInformation?.education} ● ${artisanInformation?.servicetype} ● ${artisanInformation?.phone}');
 
     clientRequestRef
         .child(rideRequestId)
         .child("profilepicture")
-        .set(artisanInformation?.profilepicture);
+        .set(riderinformation?.profilepicture);
 
     Map locMap = {
       "latitude": currentPosition?.latitude.toString(),
       "longitude": currentPosition?.longitude.toString(),
     };
-    clientRequestRef.child(rideRequestId).child("artisan_location").set(locMap);
+    clientRequestRef.child(rideRequestId).child("WMS_location").set(locMap);
 
     WastemanagementRef
         .child(currentfirebaseUser!.uid)

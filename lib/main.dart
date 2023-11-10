@@ -65,7 +65,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'BorlApp_wms',
+        debugShowCheckedModeBanner: false,
       theme: ThemeData(
+
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
