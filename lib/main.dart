@@ -1,6 +1,7 @@
 import 'package:borla_client/Model/Client.dart';
 import 'package:borla_client/Model/appstate.dart';
 import 'package:borla_client/pages/Aboutpage.dart';
+import 'package:borla_client/pages/Profilepage.dart';
 import 'package:borla_client/pages/homepage.dart';
 import 'package:borla_client/pages/signin.dart';
 import 'package:borla_client/pages/signup.dart';
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
           "/About": (context) => AboutPage(),
           // "/OnBoarding": (context) => ,
           "/SignIn": (context) =>signin(),
+          "/Profile": (context) =>Profilepg(),
           "/Homepage": (context) => homepage(),
           //    "/addproduct":(context)=>addproduct()
         }

@@ -129,6 +129,14 @@ class _signinState extends State<signin> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
+            Container(
+              width: 159.0, // Adjust the width as needed
+              height: 120, // Adjust the height as needed
+              child: Image.asset(
+                'assets/images/wms.png',
+              ),),
+
             Row(
               children: [
                 Padding(

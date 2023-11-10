@@ -29,9 +29,13 @@ class _AboutPageState extends State<AboutPage> {
               // Image.asset('assets/app_logo.png', width: 100, height: 100),
 
               // App name and version
-              Text(
-                'Borla Client',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              Center(
+                child: Container(
+                  width: 239.0, // Adjust the width as needed
+                  height: 120, // Adjust the height as needed
+                  child: Image.asset(
+                    'assets/images/wms.png',
+                  ),),
               ),
               Text(
                 'Version 1.0.0',
@@ -47,14 +51,15 @@ class _AboutPageState extends State<AboutPage> {
                       'The Google API feature will help waste management services locate you with easy.',
                   // 'It's designed to showcase Flutter development skills.',
                   // textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 13),
                 ),
               ),
               Divider(
-                thickness: 3,
+                thickness: 4,
                 color: Colors.blue,
               ),
               Row(children: [
+                SizedBox(height: 44,),
                 Text(
                   'TeamMembers',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -63,42 +68,74 @@ class _AboutPageState extends State<AboutPage> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(children: [
-                  Card(
-                      child: Column(children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          child: Text(
-                            "Joseph Dickson",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 32),
+                  SizedBox(
+                    height:194,
+                    child: Card(
+                        color: Colors.white,
+
+                        child: Column(children: [
+                          Center(
+                            child: Container(
+                              width: 109.0, // Adjust the width as needed
+                              height: 100, // Adjust the height as needed
+                              child: Image.asset(
+                                'assets/images/ics1.png',
+                              ),),
                           ),
-                        ),
-                        Text("President"),
-                      ])),
-                  Card(
-                      child: Column(children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          child: Text(
-                            "Daniel Narterh",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 32),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: Text(
+                              "Dickson Junior\n Addai-Badu",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
+                            ),
                           ),
-                        ),
-                        Text("Lead Developer"),
-                      ])),
-                  Card(
-                      child: Column(children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          child: Text(
-                            "BINEY..",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 32),
+                          Text(""),
+                        ])),
+                  ),
+                  SizedBox(
+                    height:194,
+                    child: Card(
+                      color: Colors.white,
+                        child: Column(children: [
+                          Center(
+                            child: Container(
+                              width: 109.0, // Adjust the width as needed
+                              height: 100, // Adjust the height as needed
+                              child: Image.asset(
+                                'assets/images/ics2.png',
+                              ),),
                           ),
-                        ),
-                        Text("Lead Developer"),
-                      ])),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: Text(
+                              "Daniel Narterh",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
+                            ),
+                          ),
+                          Text("Lead Developer",style: TextStyle(
+                              fontWeight: FontWeight.normal, fontSize: 12),),
+                        ])),
+                  ),
+                  SizedBox(
+                    height:194,
+                    child: Card(
+                        color: Colors.white,
+
+                        child: Column(children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: Text(
+                              "Kofi Biney",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
+                            ),
+                          ),
+                          Text("Web Developer",style: TextStyle(
+                              fontWeight: FontWeight.normal, fontSize: 12),)
+                        ])),
+                  ),
                 ]),
               ),
               // Developer information
