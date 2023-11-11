@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:borla_client/pages/arti_san.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'Model/Client.dart';
@@ -18,7 +17,7 @@ WMS? riderinformation;
 //User firebaseUser;
 User? firebaseUser;
 
-Arti_san? artisanInformation;
+
 User? currentfirebaseUser;
 // Users? userCurrentInfo; // CURRENT USER INFO
 

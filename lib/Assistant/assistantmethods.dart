@@ -187,10 +187,11 @@ class AssistantMethod{
 
 
 
-
   static void disableHomeTabLiveLocationUpdates() {
+    firebaseUser =
+        FirebaseAuth.instance.currentUser;
     homeTabPageStreamSubscription?.pause();
-    Geofire.removeLocation(currentfirebaseUser!.uid);
+    Geofire.removeLocation(firebaseUser!.uid);
   }
 
   static Future<DirectionDetails?> obtainPlaceDirectionDetails(

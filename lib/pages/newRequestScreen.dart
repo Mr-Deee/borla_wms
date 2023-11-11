@@ -65,7 +65,35 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
 
     acceptRideRequest();
   }
-
+  // resetApp() {
+  //   setState(() {
+  //     drawerOpen = true;
+  //     showsearchContainerHeight = true;
+  //     showsrideDetailsContainer = false;
+  //     rideDetailsContainerHeight = 0;
+  //     rideDetailsContainerHeightExpanded = 0;
+  //     requestRideContainerHeight = 0;
+  //
+  //     // _visible=!_visible;
+  //
+  //     bottomPaddingOfMap = 0.0;
+  //
+  //     polylineSet.clear();
+  //     markersSet.clear();
+  //     circlesSet.clear();
+  //     pLineCoordinates.clear();
+  //
+  //     statusRide = "";
+  //     driverName = "";
+  //     carDetailsDriver = "";
+  //     driverphone = "";
+  //     rideStatus = "Driver is Coming";
+  //     driverDetailsContainerHeight = 0.0;
+  //     driverDetailsContainerHeightExpanded = 0.0;
+  //   });
+  //
+  //   locatePosition(context);
+  // }
   void createIconMarker() {
     if (animatingMarkerIcon == null) {
       ImageConfiguration imageConfiguration =
@@ -117,7 +145,7 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
       };
       clientRequestRef
           .child(rideRequestId!)
-          .child("artisan_location")
+          .child("WMS_location")
           .set(locMap);
     });
   }
@@ -235,6 +263,10 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
                         SizedBox(
                           height: 26.0,
                         ),
+
+
+
+
                         Padding(
                             padding: EdgeInsets.symmetric(horizontal: 16.0),
                             // ignore: deprecated_member_use
@@ -436,15 +468,15 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
     clientRequestRef
         .child(rideRequestId)
         .child("WMS_name")
-        .set(artisanInformation?.name);
+        .set(riderinformation?.firstname);
     clientRequestRef
         .child(rideRequestId)
         .child("WMS_phone")
-        .set(artisanInformation?.phone);
+        .set(riderinformation?.phone);
     clientRequestRef
         .child(rideRequestId)
-        .child("artisan_id")
-        .set(artisanInformation?.id);
+        .child("WMS_id")
+        .set (WMSDBtoken.key);
     // clientRequestRef.child(rideRequestId).child("artisan_details").set(
     //     '${artisanInformation?.education} ● ${artisanInformation?.servicetype} ● ${artisanInformation?.phone}');
 
@@ -460,7 +492,7 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
     clientRequestRef.child(rideRequestId).child("WMS_location").set(locMap);
 
     WastemanagementRef
-        .child(currentfirebaseUser!.uid)
+        .child(firebaseUser!.uid)
         .child("history")
         .child(rideRequestId)
         .set(true);
@@ -569,5 +601,6 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
   displayToast(String message, BuildContext context) {
     Fluttertoast.showToast(msg: message);
   }
+
 
 }
