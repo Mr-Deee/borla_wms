@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:borla_client/Model/Client.dart';
 import 'package:borla_client/pages/progressdialog.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../Assistant/assistantmethods.dart';
 import '../Assistant/mapKitAssistant.dart';
@@ -65,35 +67,7 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
 
     acceptRideRequest();
   }
-  // resetApp() {
-  //   setState(() {
-  //     drawerOpen = true;
-  //     showsearchContainerHeight = true;
-  //     showsrideDetailsContainer = false;
-  //     rideDetailsContainerHeight = 0;
-  //     rideDetailsContainerHeightExpanded = 0;
-  //     requestRideContainerHeight = 0;
-  //
-  //     // _visible=!_visible;
-  //
-  //     bottomPaddingOfMap = 0.0;
-  //
-  //     polylineSet.clear();
-  //     markersSet.clear();
-  //     circlesSet.clear();
-  //     pLineCoordinates.clear();
-  //
-  //     statusRide = "";
-  //     driverName = "";
-  //     carDetailsDriver = "";
-  //     driverphone = "";
-  //     rideStatus = "Driver is Coming";
-  //     driverDetailsContainerHeight = 0.0;
-  //     driverDetailsContainerHeightExpanded = 0.0;
-  //   });
-  //
-  //   locatePosition(context);
-  // }
+
   void createIconMarker() {
     if (animatingMarkerIcon == null) {
       ImageConfiguration imageConfiguration =
@@ -463,16 +437,17 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
   }
 
   void acceptRideRequest() {
+
     String? rideRequestId = widget.clientDetails.artisan_request_id;
     clientRequestRef.child(rideRequestId!).child("status").set("accepted");
     clientRequestRef
         .child(rideRequestId)
         .child("WMS_name")
-        .set(riderinformation?.firstname);
+        .set(Provider.of<WMS>(context,listen: false).riderInfo?.firstname??"");
     clientRequestRef
         .child(rideRequestId)
         .child("WMS_phone")
-        .set(riderinformation?.phone);
+        .set(Provider.of<WMS>(context,listen: false).riderInfo?.phone??"");
     clientRequestRef
         .child(rideRequestId)
         .child("WMS_id")

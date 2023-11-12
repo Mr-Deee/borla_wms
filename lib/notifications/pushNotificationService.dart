@@ -109,8 +109,8 @@ class PushNotificationService {
         clientDetails.artisan_request_id = artisanRequestId;
         clientDetails.client_Address = clientAddress;
         clientDetails.finalClient_address= finalClientaddress;
-        // clientDetails.pickup = LatLng(pickUpLocationLat, pickUpLocationLng);
-        // clientDetails.dropoff = LatLng(dropOffLocationLat, dropOffLocationLng);
+        clientDetails.pickup = LatLng(pickUpLocationLat, pickUpLocationLng);
+        clientDetails.dropoff = LatLng(dropOffLocationLat, dropOffLocationLng);
         clientDetails.payment_method = paymentMethod;
         clientDetails.client_name = client_name;
         clientDetails.client_phone = client_phone;
