@@ -55,7 +55,7 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
   String durationRide = "";
   bool isRequestingDirection = false;
   String btnTitle = "Arrived";
-  Color btnColor = Colors.black87;
+  Color btnColor = Colors.white;
   StreamSubscription<DatabaseEvent>? rideStreamSubscription;
 
   Timer? timer;
@@ -256,8 +256,8 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
                                       .set(status);
 
                                   setState(() {
-                                    btnTitle = "Start Job";
-                                    btnColor = Colors.white;
+                                    btnTitle = "Bin Picked Up";
+                                    btnColor = Colors.lightGreen;
                                   });
 
                                   showDialog(
@@ -284,7 +284,7 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
                                       .set(status);
 
                                   setState(() {
-                                    btnTitle = "End Job";
+                                    btnTitle = "Done";
                                     btnColor = Colors.redAccent;
                                   });
 

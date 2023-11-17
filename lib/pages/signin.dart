@@ -17,6 +17,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:math';
 
+import '../Assistant/assistantmethods.dart';
 import '../configMaps.dart';
 import '../main.dart';
 import 'homepage.dart';
@@ -440,7 +441,9 @@ class _signinState extends State<signin> {
               email: emailcontroller.text.trim(), password: passwordcontroller.text.trim());
 
      if (clients != null) {
-        Navigator.of(context).pushNamed("/Homepage");
+       AssistantMethod.getCurrentOnlineUserInfo(context);
+
+       Navigator.of(context).pushNamed("/Homepage");
 
         displayToast("Logged-in ", context);
       } else {
