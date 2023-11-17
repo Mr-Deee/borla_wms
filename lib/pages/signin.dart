@@ -8,6 +8,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,6 +17,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:math';
 
+import '../configMaps.dart';
 import '../main.dart';
 import 'homepage.dart';
 
@@ -116,7 +119,8 @@ class _signinState extends State<signin> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // requestSmsPermission();
+    locatePosition();
+    requestLocationPermission();
   }
 
   @override
@@ -452,5 +456,36 @@ class _signinState extends State<signin> {
 
 // user created
   }
-//
+
+  GoogleMapController? newGoogleMapController;
+  void locatePosition() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.bestForNavigation);
+    currentPosition = position;
+
+    LatLng latLatPosition = LatLng(position.latitude, position.longitude);
+
+    CameraPosition cameraPosition =
+    new CameraPosition(target: latLatPosition, zoom: 14);
+    newGoogleMapController?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+  }
+
+
+  Future<void> requestLocationPermission() async {
+    final serviceStatusLocation = await Permission.locationWhenInUse.isGranted;
+
+    bool isLocation =
+        serviceStatusLocation == Permission.location.serviceStatus.isEnabled;
+
+    final status = await Permission.locationWhenInUse.request();
+
+    if (status == PermissionStatus.granted) {
+      print('Permission Granted');
+    } else if (status == PermissionStatus.denied) {
+      print('Permission denied');
+    } else if (status == PermissionStatus.permanentlyDenied) {
+      print('Permission Permanently Denied');
+      await openAppSettings();
+    }
+  }
 }

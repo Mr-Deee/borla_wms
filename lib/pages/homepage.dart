@@ -155,6 +155,7 @@ class _homepageState extends State<homepage> {
     });
 
     super.initState();
+    locatePosition();
     AssistantMethod.getCurrentOnlineUserInfo(context);
     // AssistantMethod.getCurrentOnlineOtherUserInfo(context);
     //getPicture();
@@ -207,7 +208,7 @@ class _homepageState extends State<homepage> {
               // setState(() {
               //   bottomPaddingOfMap = 0.0;
               // });
-              locatePosition();
+
             },
           ),
           //hamburger for drawer
