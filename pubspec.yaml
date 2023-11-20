@@ -49,7 +49,7 @@ dependencies:
   firebase_database:
   cloud_firestore:
   excel: ^2.0.4
-  geocoding:
+  geocoding: ^2.1.1
   open_file: ^3.3.2
   firebase_messaging:
   firebase_auth:
@@ -68,6 +68,8 @@ dependencies:
   bouncing_widget: ^2.0.0
   avatar_glow: ^2.0.2
   carousel_slider: ^4.0.0
+  image_picker: ^0.8.7
+
   url_launcher:
 #  expansion_tile_card:
 

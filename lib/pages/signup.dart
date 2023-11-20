@@ -1,4 +1,6 @@
 
+import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:borla_client/pages/progressdialog.dart';
 import 'package:borla_client/pages/signin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../main.dart';
 
@@ -21,7 +24,10 @@ TextEditingController _emailcontroller = TextEditingController();
 TextEditingController _usernamecontroller = TextEditingController();
 TextEditingController _phonecontroller = TextEditingController();
 TextEditingController _passwordcontroller = TextEditingController();
+File? _riderImage;
 
+
+final ImagePicker _imagePicker = ImagePicker();
 class _signupState extends State<signup> {
   @override
   Widget build(BuildContext context) {
@@ -65,7 +71,18 @@ class _signupState extends State<signup> {
               ],
             ),
 
+        ListView(
+          children: <Widget>[
 
+
+            _buildImagePicker(
+              title: 'Rider Image',
+              setImage: (File image) {
+                setState(() {
+                  _riderImage = image;
+                });
+              },
+            ),]),
             Column(
               mainAxisAlignment:
               MainAxisAlignment.spaceBetween,
@@ -338,7 +355,57 @@ class _signupState extends State<signup> {
   User ?firebaseUser;
   User? currentfirebaseUser;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  Widget _buildImagePicker({required String title, required Function(File) setImage}) {
+    return Column(
+      children: <Widget>[
+        Text("ProfileImage",style: TextStyle(fontWeight: FontWeight.bold),),
+        SizedBox(height: 14),
 
+        CircleAvatar(
+          radius: 50, // Adjust the radius as needed
+          backgroundColor: Colors.blue, // Background color of the avatar
+          child: _riderImage != null
+              ? ClipOval(
+            child: Image.file(
+              _riderImage!,
+              width: 100, // Adjust the width as needed
+              height: 100, // Adjust the height as needed
+              fit: BoxFit.cover, // Adjust the BoxFit as needed
+            ),
+          )
+              : GestureDetector(
+            onTap: () {
+              _pickImage(ImageSource.gallery, setImage);
+            },
+
+            child: ClipOval(
+              child: Image.asset(
+                "assets/images/profile-image.png",
+                width: 100, // Adjust the width as needed
+                height: 100, // Adjust the height as needed
+                fit: BoxFit.cover, // Adjust the BoxFit as needed
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10),
+
+        // _buildImagePreview(setImage),
+        // ElevatedButton(
+        //   onPressed: () {
+        //     _pickImage(ImageSource.gallery, setImage);
+        //   },
+        //   child: Text('Pick from Gallery'),
+        // ),
+        // ElevatedButton(
+        //   onPressed: () {
+        //     _pickImage(ImageSource.camera, setImage);
+        //   },
+        //   child: Text('Take a Photo'),
+        // ),
+      ],
+    );
+  }
   Future<void> registerNewUser(BuildContext context) async {
     showDialog(
         context: context,
@@ -400,30 +467,13 @@ class _signupState extends State<signup> {
     }
   }
 
-  // Future<void> registerInfirestore(BuildContext context) async {
-  //   User? user = FirebaseAuth.instance.currentUser;
-  //   if(user!=null) {
-  //     FirebaseFirestore.instance.collection('Members').doc(user.uid).set({
-  //       'firstName': _firstName,
-  //       'lastName': _lastname,
-  //       'MobileNumber': _mobileNumber,
-  //       'fullName':_firstName! +  _lastname!,
-  //       'Email': _email,
-  //       'Password':_password,
-  //       // 'Gender': Gender,
-  //       // 'Date Of Birth': birthDate,
-  //     });
-  //   }
-  //   print("Registered");
-  //   // Navigator.push(
-  //   //   context,
-  //   //   MaterialPageRoute(builder: (context) {
-  //   //     return SignInScreen();
-  //   //   }),
-  //   // );
-  //
-  //
-  // }
+  Future<void> _pickImage(ImageSource source, Function(File) setImage) async {
+    final pickedFile = await _imagePicker.getImage(source: source);
+    if (pickedFile != null) {
+      setImage(File(pickedFile.path));
+    }
+  }
+
   displayToast(String message, BuildContext context) {
     Fluttertoast.showToast(msg: message);
 

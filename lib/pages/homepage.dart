@@ -157,23 +157,12 @@ class _homepageState extends State<homepage> {
     super.initState();
     locatePosition();
     AssistantMethod.getCurrentOnlineUserInfo(context);
-    // AssistantMethod.getCurrentOnlineOtherUserInfo(context);
-    //getPicture();
-    // _checkGps();
     getCurrentWMSInfo();
     requestLocationPermission();
     AssistantMethod.getCurrentrequestinfo(context);
     AssistantMethod.obtainTripRequestsHistoryData(context);
 
   }
-
-  final List<String> imageList = [
-    "assets/images/barber.png",
-    "assets/images/carpenter.png",
-    "assets/images/mechanic.png",
-
-    //'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-  ];
 
   bool isSwitched = false;
 
@@ -208,6 +197,7 @@ class _homepageState extends State<homepage> {
               // setState(() {
               //   bottomPaddingOfMap = 0.0;
               // });
+              locatePosition();
 
             },
           ),
@@ -260,16 +250,7 @@ class _homepageState extends State<homepage> {
               child: Column(children: [
                     if (Provider.of<WMS>(context).riderInfo?.firstname != null)
 
-                              // Padding(
-                              //   padding: EdgeInsets.all(12.0),
-                              //   child: Text(
-                              //     'Hi, ' +
-                              //         Provider.of<WMS>(context).riderInfo!.firstname! +
-                              //         "!",
-                              //     style: TextStyle(
-                              //         fontSize: 24, fontWeight: FontWeight.bold),
-                              //   ),
-                              // ),
+
                       Switch(
                         value: context.read<AppState>().isSwitched,
                         onChanged: (value) async {
@@ -303,186 +284,6 @@ class _homepageState extends State<homepage> {
 
 
 
-                //   ],
-                          // ),
-
-                          // Positioned(
-                          //   top: 20.0,
-                          //   left: 0.0,
-                          //   right: 0.0,
-                          //   child: Row(
-                          //
-                          //       //mainAxisAlignment: MainAxisAlignment.end,
-                          //       children: [
-                          //         Padding(
-                          //           padding: EdgeInsets.symmetric(horizontal: 16.0),
-                          //           child: ElevatedButton(
-                          //             style: ElevatedButton.styleFrom(
-                          //               shape: new RoundedRectangleBorder(
-                          //               borderRadius: new BorderRadius.circular(24.0),
-                          //
-                          //             ),
-                          //
-                          //             backgroundColor: ArtisanStatusColor,),
-                          //
-                          //             onPressed: () async {
-                          //               currentfirebaseUser =
-                          //                   await FirebaseAuth.instance.currentUser;
-                          //
-                          //               WMSDB
-                          //                   .child(currentfirebaseUser!.uid)
-                          //                   .child("WMSStatus")
-                          //                   .once()
-                          //                   .then((event) {
-                          //                 if (event == "Deactivated") {
-                          //                   displayToast(
-                          //                       "Sorry You are not Activated", context);
-                          //                   ArtisanActivated();
-                          //                   getLocationLiveUpdates();
-                          //
-                          //                   setState(() {
-                          //                     ArtisanStatusColor = Colors.red;
-                          //                     ArtisanStatusText = "offline -Deactivated";
-                          //                     isArtisanAvailable = false;
-                          //                   });
-                          //                 } else if (isArtisanAvailable != true) {
-                          //                   makeArtisanOnlineNow();
-                          //                   getLocationLiveUpdates();
-                          //
-                          //                   setState(() {
-                          //                     ArtisanStatusColor = Colors.blueAccent;
-                          //                     ArtisanStatusText = "Online ";
-                          //                     isArtisanAvailable = true;
-                          //                   });
-                          //                   displayToast("you are Online Now.", context);
-                          //                 } else {
-                          //                   makeArtisanOfflineNow();
-                          //
-                          //                   setState(() {
-                          //                     ArtisanStatusColor = Colors.white70;
-                          //                     ArtisanStatusText = "Offline ";
-                          //                     isArtisanAvailable = false;
-                          //                   });
-                          //
-                          //                   displayToast("you are offline Now.", context);
-                          //                 }
-                          //               });
-                          //             },
-                          //
-                          //             child: Padding(
-                          //               padding: EdgeInsets.all(12.0),
-                          //               child: Row(
-                          //                 mainAxisAlignment:
-                          //                     MainAxisAlignment.spaceBetween,
-                          //                 children: [
-                          //                   Text(
-                          //                     ArtisanStatusText,
-                          //                     style: TextStyle(
-                          //                         fontSize: 20.0,
-                          //                         fontWeight: FontWeight.bold,
-                          //                         color: Colors.black),
-                          //                   ),
-                          //                   Icon(
-                          //                     Icons.online_prediction,
-                          //                     color: Colors.black,
-                          //                     size: 26.0,
-                          //                   ),
-                          //                 ],
-                          //               ),
-                          //             ),
-                          //           ),
-                          //         )
-                          //       ]),
-                          // ),
-                          // Positioned(
-                          //   top: 20.0,
-                          //   left: 0.0,
-                          //   right: 0.0,
-                          //   child: Row(
-                          //
-                          //       //mainAxisAlignment: MainAxisAlignment.end,
-                          //       children: [
-                          //         Padding(
-                          //           padding: EdgeInsets.symmetric(horizontal: 16.0),
-                          //           child: ElevatedButton(
-                          //             style: ElevatedButton.styleFrom(
-                          //               shape: new RoundedRectangleBorder(
-                          //               borderRadius: new BorderRadius.circular(24.0),
-                          //
-                          //             ),
-                          //
-                          //             backgroundColor: ArtisanStatusColor,),
-                          //
-                          //             onPressed: () async {
-                          //               currentfirebaseUser =
-                          //                   await FirebaseAuth.instance.currentUser;
-                          //
-                          //               WMSDB
-                          //                   .child(currentfirebaseUser!.uid)
-                          //                   .child("WMSStatus")
-                          //                   .once()
-                          //                   .then((event) {
-                          //                 if (event == "Deactivated") {
-                          //                   displayToast(
-                          //                       "Sorry You are not Activated", context);
-                          //                   ArtisanActivated();
-                          //                   getLocationLiveUpdates();
-                          //
-                          //                   setState(() {
-                          //                     ArtisanStatusColor = Colors.red;
-                          //                     ArtisanStatusText = "offline -Deactivated";
-                          //                     isArtisanAvailable = false;
-                          //                   });
-                          //                 } else if (isArtisanAvailable != true) {
-                          //                   makeArtisanOnlineNow();
-                          //                   getLocationLiveUpdates();
-                          //
-                          //                   setState(() {
-                          //                     ArtisanStatusColor = Colors.blueAccent;
-                          //                     ArtisanStatusText = "Online ";
-                          //                     isArtisanAvailable = true;
-                          //                   });
-                          //                   displayToast("you are Online Now.", context);
-                          //                 } else {
-                          //                   makeArtisanOfflineNow();
-                          //
-                          //                   setState(() {
-                          //                     ArtisanStatusColor = Colors.white70;
-                          //                     ArtisanStatusText = "Offline ";
-                          //                     isArtisanAvailable = false;
-                          //                   });
-                          //
-                          //                   displayToast("you are offline Now.", context);
-                          //                 }
-                          //               });
-                          //             },
-                          //
-                          //             child: Padding(
-                          //               padding: EdgeInsets.all(12.0),
-                          //               child: Row(
-                          //                 mainAxisAlignment:
-                          //                     MainAxisAlignment.spaceBetween,
-                          //                 children: [
-                          //                   Text(
-                          //                     ArtisanStatusText,
-                          //                     style: TextStyle(
-                          //                         fontSize: 20.0,
-                          //                         fontWeight: FontWeight.bold,
-                          //                         color: Colors.black),
-                          //                   ),
-                          //                   Icon(
-                          //                     Icons.online_prediction,
-                          //                     color: Colors.black,
-                          //                     size: 26.0,
-                          //                   ),
-                          //                 ],
-                          //               ),
-                          //             ),
-                          //           ),
-                          //         )
-                          //       ]),
-                          // ),
-
 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -496,86 +297,10 @@ class _homepageState extends State<homepage> {
                                 child: SizedBox(
                                   height: 160,
                                   width: 240,
-                                  // child: GestureDetector(
-                                  //   onTap: () {
-                                  //     // Navigator.of(context).pushAndRemoveUntil(
-                                  //     // MaterialPageRoute(
-                                  //     // builder: (context) => EditCrafts()),
-                                  //     // (Route<dynamic> route) => true);
-                                  //   },
-                                  //   child: Card(
-                                  //     color: Colors.black,
-                                  //     elevation: 8,
-                                  //     shadowColor: Colors.black38,
-                                  //     shape: RoundedRectangleBorder(
-                                  //         borderRadius: BorderRadius.all(
-                                  //           Radius.circular(20),
-                                  //         ),
-                                  //         side: BorderSide(
-                                  //             width: size.width, color: Colors.white24)),
-                                  //     child: Column(
-                                  //       children: [
-                                  //         Padding(
-                                  //           padding: const EdgeInsets.all(20.0),
-                                  //           child: Text('Edit  your Craft',
-                                  //               style: GoogleFonts.openSans(
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold,
-                                  //                 fontSize: 20,
-                                  //               )),
-                                  //         ),
-                                  //         Icon(
-                                  //           Icons.edit,
-                                  //           color: Colors.white,
-                                  //         ),
-                                  //       ],
-                                  //     ),
-                                  //   ),
-                                  // ),
+
                                 ),
                               ),
-                              // FadeInDown(
-                              //   delay: const Duration(milliseconds: 1000),
-                              //   child: SizedBox(
-                              //     height: 160,
-                              //     width: 180,
-                              //     child: GestureDetector(
-                              //       onTap: () {
-                              //         // Navigator.of(context).pushAndRemoveUntil(
-                              //         //     MaterialPageRoute(
-                              //         //         builder: (context) => Artisan_portfolio()),
-                              //         //     (Route<dynamic> route) => true);
-                              //       },
-                              //       child: Card(
-                              //         elevation: 8,
-                              //         shadowColor: Colors.black38,
-                              //         shape: RoundedRectangleBorder(
-                              //             borderRadius: BorderRadius.all(
-                              //               Radius.circular(20),
-                              //             ),
-                              //             side: BorderSide(
-                              //                 width: size.width, color: Colors.white24)),
-                              //         child: Column(
-                              //           children: [
-                              //             Padding(
-                              //               padding: const EdgeInsets.only(
-                              //                   top: 50.0, left: 10, right: 10),
-                              //               child: Text('Earnings',
-                              //                   style: GoogleFonts.openSans(
-                              //                     color: Colors.black,
-                              //                     //fontWeight: FontWeight.bold,
-                              //                     fontSize: 20,
-                              //                   )),
-                              //             ),
-                              //             Icon(
-                              //               Icons.monetization_on_rounded,
-                              //             ),
-                              //           ],
-                              //         ),
-                              //       ),
-                              //     ),
-                              //   ),
-                              // ),
+
                             ]),
                       ),
                     ),
@@ -583,87 +308,6 @@ class _homepageState extends State<homepage> {
                     SizedBox(
                       height: 30,
                     ),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     showDialog(
-                    //         context: context,
-                    //         barrierDismissible: false,
-                    //         builder: (BuildContext context) => requestsfolder(
-                    //             // paymentMethod: widget.clientDetails.payment_method,
-                    //             // fareAmount: fareAmount,
-                    //             ));
-                    //   },
-                    //   child: Container(
-                    //     child: Column(
-                    //       children: [
-                    //         Container(
-                    //           margin: EdgeInsets.all(15),
-                    //           child: CarouselSlider.builder(
-                    //             itemCount: imageList.length,
-                    //             options: CarouselOptions(
-                    //               enlargeCenterPage: true,
-                    //               height: 190,
-                    //               autoPlay: true,
-                    //               autoPlayInterval: Duration(seconds: 3),
-                    //               reverse: false,
-                    //               aspectRatio: 5.0,
-                    //             ),
-                    //             itemBuilder: (context, i, id) {
-                    //               //for onTap to redirect to another screen
-                    //
-                    //               return GestureDetector(
-                    //                 child: Container(
-                    //                   decoration: BoxDecoration(
-                    //                       borderRadius: BorderRadius.circular(15),
-                    //                       border: Border.all(
-                    //                         color: Colors.white12,
-                    //                       )),
-                    //                   //ClipRRect for image border radius
-                    //                   child: ClipRRect(
-                    //                     borderRadius: BorderRadius.circular(15),
-                    //                     child: Image.asset(
-                    //                       imageList[i],
-                    //                       width: 600,
-                    //                       fit: BoxFit.cover,
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //                 onTap: () {
-                    //                   var url = imageList[i];
-                    //                   print(url.toString());
-                    //                 },
-                    //               );
-                    //             },
-                    //           ),
-                    //         ),
-                    //         Center(
-                    //           child: Text(
-                    //             "Requests folder",
-                    //             style: TextStyle(
-                    //               fontWeight: FontWeight.bold,
-                    //               color: Colors.black,
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //     height: 300,
-                    //     width: 340,
-                    //     decoration: BoxDecoration(
-                    //         color: Colors.black12,
-                    //         borderRadius: BorderRadius.circular(30.0),
-                    //         boxShadow: [
-                    //           BoxShadow(
-                    //             color: Colors.transparent,
-                    //             blurRadius: 0.0,
-                    //             offset: Offset.zero,
-                    //             spreadRadius: 2.0,
-                    //           )
-                    //         ]),
-                    //   ),
-                    // ),
-
-                    //if clause for jobs
 
                     const SizedBox(
                       height: 10,
@@ -733,8 +377,7 @@ class _homepageState extends State<homepage> {
             currentfirebaseUser!.uid, position.latitude, position.longitude);
       }
 
-      // LatLng latLng = LatLng(position.latitude, position.longitude);
-      // newGoogleMapController.animateCamera(CameraUpdate.newLatLng(latLng));
+
     });
   }
 

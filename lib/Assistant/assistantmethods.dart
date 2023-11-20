@@ -94,7 +94,7 @@ class AssistantMethod{
 
     print(
         'assistant methods step 78:: call users document from firebase database using userId');
-    clientRequestRef.once().then(( event) async {
+    clientRequestRef.once().then((event) async {
       final dataSnapshot = event.snapshot;
       if (dataSnapshot.value!= null) {
         context.read<ReqModel>().setotherUser(ReqModel.fromSnapshot(dataSnapshot) );

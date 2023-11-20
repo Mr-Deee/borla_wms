@@ -46,9 +46,14 @@ class _AboutPageState extends State<AboutPage> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'This is With Borla tech app, anyone enrolled on the app can request for pick up of their waste either from their homes,workplace, marketplaces etc. '
-                      'and immediately your request will be sent to the waste management services.'
-                      'The Google API feature will help waste management services locate you with easy.',
+                  'Welcome to Borla, where we redefine waste management with innovation and sustainability at our core. '
+                      'Our mission is simple yet powerful: to create a cleaner, greener future by revolutionizing the way we handle waste. '
+                      'At Borla, we believe that responsible waste management is key to preserving our environment.'
+                      ' We have designed a user-friendly platform that seamlessly connects individuals and businesses '
+                      'with efficient waste disposal solutions. Whether you are a conscientious homeowner or a forward-thinking organization,'
+                  '  With Borla , you not only manage your waste but also contribute to a sustainable, circular economy.'
+                      'Join us on this journey towards a cleaner tomorrow. Together, lets make waste management not just a necessity,'
+                      ' but a conscious choice for a brighter, more sustainable future..',
                   // 'It's designed to showcase Flutter development skills.',
                   // textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 13),
