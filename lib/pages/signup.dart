@@ -5,6 +5,7 @@ import 'package:borla_client/pages/progressdialog.dart';
 import 'package:borla_client/pages/signin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -71,8 +72,7 @@ class _signupState extends State<signup> {
               ],
             ),
 
-        ListView(
-          children: <Widget>[
+
 
 
             _buildImagePicker(
@@ -80,9 +80,8 @@ class _signupState extends State<signup> {
               setImage: (File image) {
                 setState(() {
                   _riderImage = image;
-                });
-              },
-            ),]),
+                });}),
+
             Column(
               mainAxisAlignment:
               MainAxisAlignment.spaceBetween,
@@ -380,7 +379,7 @@ class _signupState extends State<signup> {
 
             child: ClipOval(
               child: Image.asset(
-                "assets/images/profile-image.png",
+                "assets/images/imgicon.png",
                 width: 100, // Adjust the width as needed
                 height: 100, // Adjust the height as needed
                 fit: BoxFit.cover, // Adjust the BoxFit as needed
@@ -406,6 +405,19 @@ class _signupState extends State<signup> {
       ],
     );
   }
+
+  Future<String> _uploadImageToStorage(File? imageFile) async {
+    if (imageFile == null) {
+      return ''; // Return an empty string if no image is provided
+    }
+
+    final Reference storageReference =
+    FirebaseStorage.instance.ref().child('profile_images/${DateTime.now().toString()}');
+    final UploadTask uploadTask = storageReference.putFile(imageFile);
+    await uploadTask.whenComplete(() => null);
+    final String downloadURL = await storageReference.getDownloadURL();
+    return downloadURL;
+  }
   Future<void> registerNewUser(BuildContext context) async {
     showDialog(
         context: context,
@@ -426,6 +438,7 @@ class _signupState extends State<signup> {
       displayToast("Error" + errMsg.toString(), context);
     }))
         .user;
+    final riderImageUrl = await _uploadImageToStorage(_riderImage);
 
     if (firebaseUser != null) // user created
 
@@ -433,7 +446,7 @@ class _signupState extends State<signup> {
       //save use into to database
       await firebaseUser?.sendEmailVerification();
       Map userDataMap = {
-
+        'riderImageUrl': riderImageUrl,
         "email": _emailcontroller.text.trim(),
         "Username":_usernamecontroller.text.trim(),
         "phone": _phonecontroller.text.trim(),
