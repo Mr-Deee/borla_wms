@@ -349,7 +349,7 @@ class _homepageState extends State<homepage> {
       "Profilepicture":
           Provider.of<Users>(context, listen: false).userInfo?.profilepicture??"",
       "Username": Provider.of<WMS>(context, listen: false).riderInfo?.firstname??"",
-      "WMS_type":Provider.of<otherUsermodel>(context,listen:false).otherinfo?.Service??"",
+      "WMS_type":"WMS",
       "client_phone": Provider.of<WMS>(context, listen: false).riderInfo?.phone!,
       // "Experience" :Provider.of<otherUsermodel>(context,listen: false).otherinfo!.Experience!,
       "email": Provider.of<WMS>(context, listen: false).riderInfo?.email!,
@@ -362,7 +362,7 @@ class _homepageState extends State<homepage> {
       currentPosition!.latitude,
       currentPosition!.longitude,
     );
-    // await WMSAvailable.update(artisanMap);
+   await WMSAvailable.update(artisanMap);
 
     WastemanagementRef.onValue.listen((event) {});
   }
