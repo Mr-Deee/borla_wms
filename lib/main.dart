@@ -56,7 +56,7 @@ DatabaseReference WastemanagementRef= FirebaseDatabase.instance.ref().child("WMS
 DatabaseReference clients = FirebaseDatabase.instance.ref().child("Clients");
 DatabaseReference WMSDB = FirebaseDatabase.instance.ref().child("WMS");
 DatabaseReference WMSDBtoken = FirebaseDatabase.instance.ref().child("WMS").child(uid!);
-DatabaseReference WMSAvailable = FirebaseDatabase.instance.ref().child("availableWMS").child(currentfirebaseUser!.uid);
+DatabaseReference WMSAvailable = FirebaseDatabase.instance.ref().child("availableWMS").child(uid!);
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
