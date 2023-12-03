@@ -537,7 +537,6 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
         .set(fareAmount.toString());
     clientRequestRef.child(rideRequestId).child("status").set("ended");
     rideStreamSubscription?.cancel();
-
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -571,6 +570,9 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
             .child("earnings")
             .set(totalEarnings.toStringAsFixed(2));
       }
+
+
+
     });
   }
   displayToast(String message, BuildContext context) {

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../Model/BorlaRequests.dart';
+import '../Model/Client.dart';
 import '../Model/Users.dart';
 
 class Requestpage extends StatefulWidget {
@@ -20,7 +21,7 @@ class Requestpage extends StatefulWidget {
 class _RequestpageState extends State<Requestpage> {
   var username;
   void initState() {
-    username=  Provider.of<Users>(context, listen: false).userInfo?.firstname;
+    username=  Provider.of<WMS>(context, listen: false).riderInfo?.firstname;
 
     super.initState();
     // getPicture();
@@ -40,7 +41,7 @@ class _RequestpageState extends State<Requestpage> {
       FirebaseDatabase.instance.ref().child('ClientRequest');
 
       final DatabaseEvent event = await databaseReference
-          .orderByChild('client_name')
+          .orderByChild('WMS_name')
           .equalTo(username)
           .once();
 
@@ -53,7 +54,7 @@ class _RequestpageState extends State<Requestpage> {
           // Assuming Request class has appropriate constructor to extract data
           // Adjust this part based on your actual Request class structure
           Request request = Request(
-            title: value['finalClient_address'],
+            title: value['client_name'],
             description: value['created_at'],
           );
           requests.add(request);

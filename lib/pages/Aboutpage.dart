@@ -63,86 +63,86 @@ class _AboutPageState extends State<AboutPage> {
                 thickness: 4,
                 color: Colors.blue,
               ),
-              Row(children: [
-                SizedBox(height: 44,),
-                Text(
-                  'TeamMembers',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ]),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(children: [
-                  SizedBox(
-                    height:194,
-                    child: Card(
-                        color: Colors.white,
-
-                        child: Column(children: [
-                          Center(
-                            child: Container(
-                              width: 109.0, // Adjust the width as needed
-                              height: 100, // Adjust the height as needed
-                              child: Image.asset(
-                                'assets/images/ics1.png',
-                              ),),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: Text(
-                              "Dickson Junior\n Addai-Badu",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
-                            ),
-                          ),
-                          Text(""),
-                        ])),
-                  ),
-                  SizedBox(
-                    height:194,
-                    child: Card(
-                      color: Colors.white,
-                        child: Column(children: [
-                          Center(
-                            child: Container(
-                              width: 109.0, // Adjust the width as needed
-                              height: 100, // Adjust the height as needed
-                              child: Image.asset(
-                                'assets/images/ics2.png',
-                              ),),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: Text(
-                              "Daniel Narterh",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
-                            ),
-                          ),
-                          Text("Lead Developer",style: TextStyle(
-                              fontWeight: FontWeight.normal, fontSize: 12),),
-                        ])),
-                  ),
-                  SizedBox(
-                    height:194,
-                    child: Card(
-                        color: Colors.white,
-
-                        child: Column(children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: Text(
-                              "Kofi Biney",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
-                            ),
-                          ),
-                          Text("Web Developer",style: TextStyle(
-                              fontWeight: FontWeight.normal, fontSize: 12),)
-                        ])),
-                  ),
-                ]),
-              ),
+              // Row(children: [
+              //   SizedBox(height: 44,),
+              //   Text(
+              //     'TeamMembers',
+              //     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              //   ),
+              // ]),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: Row(children: [
+              //     SizedBox(
+              //       height:194,
+              //       child: Card(
+              //           color: Colors.white,
+              //
+              //           child: Column(children: [
+              //             Center(
+              //               child: Container(
+              //                 width: 109.0, // Adjust the width as needed
+              //                 height: 100, // Adjust the height as needed
+              //                 child: Image.asset(
+              //                   'assets/images/ics1.png',
+              //                 ),),
+              //             ),
+              //             Padding(
+              //               padding: const EdgeInsets.symmetric(horizontal: 25),
+              //               child: Text(
+              //                 "Dickson Junior\n Addai-Badu",
+              //                 style: TextStyle(
+              //                     fontWeight: FontWeight.bold, fontSize: 12),
+              //               ),
+              //             ),
+              //             Text(""),
+              //           ])),
+              //     ),
+              //     SizedBox(
+              //       height:194,
+              //       child: Card(
+              //         color: Colors.white,
+              //           child: Column(children: [
+              //             Center(
+              //               child: Container(
+              //                 width: 109.0, // Adjust the width as needed
+              //                 height: 100, // Adjust the height as needed
+              //                 child: Image.asset(
+              //                   'assets/images/ics2.png',
+              //                 ),),
+              //             ),
+              //             Padding(
+              //               padding: const EdgeInsets.symmetric(horizontal: 25),
+              //               child: Text(
+              //                 "Daniel Narterh",
+              //                 style: TextStyle(
+              //                     fontWeight: FontWeight.bold, fontSize: 12),
+              //               ),
+              //             ),
+              //             Text("Lead Developer",style: TextStyle(
+              //                 fontWeight: FontWeight.normal, fontSize: 12),),
+              //           ])),
+              //     ),
+              //     SizedBox(
+              //       height:194,
+              //       child: Card(
+              //           color: Colors.white,
+              //
+              //           child: Column(children: [
+              //             Padding(
+              //               padding: const EdgeInsets.symmetric(horizontal: 25),
+              //               child: Text(
+              //                 "Kofi Biney",
+              //                 style: TextStyle(
+              //                     fontWeight: FontWeight.bold, fontSize: 12),
+              //               ),
+              //             ),
+              //             Text("Web Developer",style: TextStyle(
+              //                 fontWeight: FontWeight.normal, fontSize: 12),)
+              //           ])),
+              //     ),
+              //   ]),
+              // ),
               // Developer information
 
 

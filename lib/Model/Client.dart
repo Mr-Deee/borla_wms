@@ -27,14 +27,14 @@ class WMS extends ChangeNotifier
       email: data["email"],
       firstname: data["Username"],
       // lastname: data["LastName"],
-    //   profilepicture: data["riderImageUrl"],
-    // automobile_color: data["car_details"]["automobile_color"],
-    // automobile_model: data["car_details"]["motorBrand"],
-    //  plate_number:data["car_details"]["licensePlateNumber"],
+      //   profilepicture: data["riderImageUrl"],
+      // automobile_color: data["car_details"]["automobile_color"],
+      // automobile_model: data["car_details"]["motorBrand"],
+      //  plate_number:data["car_details"]["licensePlateNumber"],
     );
   }
 
-    WMS? _riderInfo;
+  WMS? _riderInfo;
 
   WMS? get riderInfo => _riderInfo;
 
