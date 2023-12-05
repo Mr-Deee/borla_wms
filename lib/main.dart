@@ -10,7 +10,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'Assistant/helper.dart';
 import 'Model/Users.dart';
 import 'Model/otherUserModel.dart';
@@ -46,8 +46,30 @@ void main() async {
       create: (context) => AppState(),
     ),
   ],child: MyApp()));
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+}
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("Handling a background message: ${message.messageId}");
+  // Handle the notification here when the app is in the background.
 }
 
+
+_firebaseMessaging.configure(
+onMessage: (Map<String, dynamic> message) async {
+print("onMessage: $message");
+// Handle the notification when the app is in the foreground.
+},
+onLaunch: (Map<String, dynamic> message) async {
+print("onLaunch: $message");
+// Handle the notification when the app is launched from terminated state.
+},
+onResume: (Map<String, dynamic> message) async {
+print("onResume: $message");
+// Handle the notification when the app is resumed from background.
+},
+);
+}
+}
 final FirebaseAuth auth = FirebaseAuth.instance;
 final User? user = auth.currentUser;
 final uid = user?.uid;
