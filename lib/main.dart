@@ -18,7 +18,6 @@ import 'appData.dart';
 import 'firebase_options.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -29,7 +28,7 @@ void main() async {
     ),
     ChangeNotifierProvider<Users>(
       create: (context) => Users(),
-    ),   ChangeNotifierProvider<WMS>(
+    ), ChangeNotifierProvider<WMS>(
       create: (context) => WMS(),
     ),
 
@@ -45,63 +44,91 @@ void main() async {
     ChangeNotifierProvider<AppState>(
       create: (context) => AppState(),
     ),
-  ],child: MyApp()));
+  ], child: MyApp()));
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 }
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message.messageId}");
   // Handle the notification here when the app is in the background.
 }
 
 
-_firebaseMessaging.configure(
-onMessage: (Map<String, dynamic> message) async {
-print("onMessage: $message");
-// Handle the notification when the app is in the foreground.
-},
-onLaunch: (Map<String, dynamic> message) async {
-print("onLaunch: $message");
-// Handle the notification when the app is launched from terminated state.
-},
-onResume: (Map<String, dynamic> message) async {
-print("onResume: $message");
-// Handle the notification when the app is resumed from background.
-},
-);
-}
-}
+
 final FirebaseAuth auth = FirebaseAuth.instance;
 final User? user = auth.currentUser;
 final uid = user?.uid;
-DatabaseReference  clientRequestRef = FirebaseDatabase.instance.ref().child("ClientRequest");
-DatabaseReference WastemanagementRef= FirebaseDatabase.instance.ref().child("WMS").child(uid!).child("new WMS");
+DatabaseReference clientRequestRef = FirebaseDatabase.instance.ref().child(
+    "ClientRequest");
+DatabaseReference WastemanagementRef = FirebaseDatabase.instance.ref().child(
+    "WMS").child(uid!).child("new WMS");
 DatabaseReference clients = FirebaseDatabase.instance.ref().child("Clients");
 DatabaseReference WMSDB = FirebaseDatabase.instance.ref().child("WMS");
-DatabaseReference WMSDBtoken = FirebaseDatabase.instance.ref().child("WMS").child(uid!);
-DatabaseReference WMSAvailable = FirebaseDatabase.instance.ref().child("availableWMS").child(uid!);
+DatabaseReference WMSDBtoken = FirebaseDatabase.instance.ref()
+    .child("WMS")
+    .child(uid!);
+DatabaseReference WMSAvailable = FirebaseDatabase.instance.ref().child(
+    "availableWMS").child(uid!);
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  @override
+  void initState() {
+    // super.initState();
 
+    final FirebaseMessaging messaging  = FirebaseMessaging.instance;
+
+
+// PROBLEM STARTS HERE
+    Future initialize(context) async{
+      print("Start here");
+
+
+
+
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage message)   {
+        print('Got a message whilst in the foreground!');
+       // retrieveRideRequestInfo(getRideRequestId(message.data), context);
+
+
+      });
+
+
+      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+        print('in the foreground!');
+        //retrieveRideRequestInfo(getRideRequestId(message.data), context);
+      });
+
+
+
+
+      final RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+      if (initialMessage != null) {
+        //retrieveRideRequestInfo(getRideRequestId(context), context);
+      }
+    }
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BorlApp_wms',
+        title: 'BorlApp_wms',
         debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+        theme: ThemeData(
 
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-        useMaterial3: true,
-      ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+          useMaterial3: true,
+        ),
         initialRoute:
         FirebaseAuth.instance.currentUser == null ? '/SignIn' : '/Homepage',
         routes: {
           "/SignUP": (context) => signup(),
           "/About": (context) => AboutPage(),
           // "/OnBoarding": (context) => ,
-          "/SignIn": (context) =>signin(),
-          "/Profile": (context) =>Profilepg(),
+          "/SignIn": (context) => signin(),
+          "/Profile": (context) => Profilepg(),
           "/Homepage": (context) => homepage(),
           //    "/addproduct":(context)=>addproduct()
         }
