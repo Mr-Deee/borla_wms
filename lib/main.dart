@@ -3,6 +3,7 @@ import 'package:borla_client/Model/appstate.dart';
 import 'package:borla_client/pages/Aboutpage.dart';
 import 'package:borla_client/pages/Profilepage.dart';
 import 'package:borla_client/pages/homepage.dart';
+import 'package:borla_client/pages/onboarding.dart';
 import 'package:borla_client/pages/signin.dart';
 import 'package:borla_client/pages/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -122,9 +123,10 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         initialRoute:
-        FirebaseAuth.instance.currentUser == null ? '/SignIn' : '/Homepage',
+        FirebaseAuth.instance.currentUser == null ? '/Onboarding' : '/Homepage',
         routes: {
           "/SignUP": (context) => signup(),
+          "/Onboarding": (context) => OnBoardingPage(),
           "/About": (context) => AboutPage(),
           // "/OnBoarding": (context) => ,
           "/SignIn": (context) => signin(),
