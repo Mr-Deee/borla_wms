@@ -63,27 +63,28 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
 
         PageViewModel(
-          title: "Select LPG Station",
+          title: "How To Sign UP?",
           body:
-          "Select from our database your nearest \n"
-          "LPG station.",
-          image: Image(image: AssetImage('assets/images/nearest-lpg-station-1.png',),),
+          "Tap 'New User? signup',to navigate to signup screen. and input credentials,\n"
+          "Return and Signin to your account.",
+          image: Image(image: AssetImage('assets/images/signup.png',),),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Secure in-app payments",
-          body:
-          "Pay via mobile money or credit card after\ndelivery guy arrives "
+          title: "How To SignIn",
+          body: "Enter your email and password.\n"
+              "Tap Continue to signin "
               "",
-          image: Image(image: AssetImage('assets/images/pay-in-app-1-1.png'),),
+          image: Image(image: AssetImage('assets/images/signin.png'),),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Delivered to your doorstep.",
+          title: "Go Online",
           body:
-          "Conveniently delivered right to you."
+          "Want To Recieve Requests? \n "
+              "Hit the Toggle to go online. Receive Requests in minutes."
               "",
-          image: Image(image: AssetImage('assets/images/right-to-your-doorstep-2-1.png'),),
+          image: Image(image: AssetImage('assets/images/toggle.png'),),
           decoration: pageDecoration,
         ),
       ],
